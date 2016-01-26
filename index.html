@@ -7,10 +7,10 @@
   </head>
   <body>
     <div class="container">
-      <h1>Bank Accout</h1>
+      <h1>Bank Account</h1>
     </div>
     <div class="container">
-      <h2>Sign up for a bank aacount :</h2>
+      <h2>Sign up for a bank account :</h2>
       <form id="new-account">
         <div class="form-group">
           <label for="name">Name</label>
@@ -29,6 +29,8 @@
     </div>
     <div class="container">
       <form id= "bank-account">
+        <h1 id="account-name"></h1>
+        <h2>Account Balance: $ <span id="balance1"></span></h2>
         <div id="deposit">
           <div class="depositamount">
             <div class="form-group">
@@ -44,12 +46,7 @@
         <button type="submit" class="btn">Add</button>
       </form>
     </div>
-    <div class="container">
-      <div id="show-account" class="hideme">
-        <h2>Account Balance: </h2>
-        <p id="account-balance"></p>
-      </div>
-    </div>
+
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

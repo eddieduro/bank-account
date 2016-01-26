@@ -1,28 +1,46 @@
-function BankAccount (accountName, balance, firstDeposit, withDrawal) {
-  var balance;
+function BankAccount (accountName, balance, firstDeposit) {
   this.accountName = accountName;
   this.balance = balance;
   this.firstDeposit = firstDeposit;
-  this.withDrawal = withDrawal;
-  return balance;
 }
 
-BankAccount.prototype.initialDeposit = function(){
-  return this.balance + this.firstDeposit;
+BankAccount.prototype.deposit = function(amount){
+  this.balance += amount;
+  return this.balance;
 }
 
-BankAccount.prototype.withDrawalamount = function () {
-  return this.balance - this.withDrawal;
+BankAccount.prototype.withDraw = function(amount) {
+  this.balance -= amount;
+  return this.balance;
 }
 
 $(document).ready(function() {
+  var account;
   $('form#new-account').submit(function(event){
     event.preventDefault();
     var inputtedAccountName = $('input#name').val();
-    var inputtedInitialDeposit = parseInt($("input#initial-deposit").val());
+    var inputtedDeposit = parseInt($("input#initial-deposit").val());
+
+    var newAccount = new BankAccount(inputtedAccountName, 0, inputtedDeposit);
+
+    account = newAccount;
+
+    $("form#bank-account").show();
+    $("form#new-account").hide();
+    $("#balance1").text(newAccount.deposit(inputtedDeposit));
+    $("#account-name").text(newAccount.accountName);
+  });
+
+  $('form#bank-account').submit(function(event){
+    event.preventDefault();
+    var inputtedDeposit = parseInt($("input#initial-deposit").val());
     var inputtedWithDrawal = parseInt($("input#withdrawal").val());
 
-    var newAccount = new BankAccount(inputtedAccountName, 0, inputtedInitialDeposit, inputtedWithDrawal);
-
+    if(inputtedWithDrawal > 0) {
+      $("#balance1").text(account.withDraw(inputtedWithDrawal));
+    }
+    if(inputtedDeposit > 0) {
+      $("#balance1").text(account.deposit(inputtedDeposit));
+    }
   });
 });
